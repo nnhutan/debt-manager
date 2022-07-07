@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_07_082052) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_102420) do
+  create_table "debtors", force: :cascade do |t|
+    t.string "full_name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "phone_number"
+    t.index ["user_id"], name: "index_debtors_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
@@ -20,4 +30,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_082052) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "debtors", "users"
 end
