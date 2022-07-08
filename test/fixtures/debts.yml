@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 1
+  description: MyText
+  status: false
+  user: one
+  debtor: one
+
+two:
+  total: 1
+  description: MyText
+  status: false
+  user: two
+  debtor: two

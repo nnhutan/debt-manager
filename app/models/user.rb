@@ -2,8 +2,11 @@
 
 # User Model
 class User < ApplicationRecord
+  attr_accessor :remember_token
+
   before_save :downcase_email
   has_many :debtors
+  has_many :debts
   validates :full_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -27,13 +30,15 @@ class User < ApplicationRecord
 
   def authenticated?(type, token)
     digest = send("#{type}_digest")
+    puts digest
     return false if digest.nil?
 
     BCrypt::Password.new(digest).is_password?(token)
   end
 
   def remember
-    update_attribute(:remember_digest, digest_string(new_token))
+    self.remember_token = new_token
+    update_attribute(:remember_digest, digest_string(remember_token))
     remember_digest
   end
 
