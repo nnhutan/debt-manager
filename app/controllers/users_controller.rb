@@ -3,7 +3,10 @@
 # User Controller
 class UsersController < ApplicationController
   before_action :check_login, only: [:index]
-  def index; end
+  def index
+    @debtors = current_user.debtors
+    puts @debtors.inspect
+  end
 
   def new
     redirect_to root_path if logged_in?
