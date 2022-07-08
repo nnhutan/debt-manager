@@ -5,8 +5,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   before_save :downcase_email
-  has_many :debtors
-  has_many :debts
+  has_many :debtors, dependent: :destroy
+  has_many :debts, dependent: :destroy
   validates :full_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },

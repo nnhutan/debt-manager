@@ -1,0 +1,14 @@
+<div class="col-md-4">
+  <div class="card">
+  <div class="card-body">
+    <span class="d-flex align-items-center justify-content-between">
+      <h5 class="card-title text-danger"><%=debt[:total]%> VND</h5>
+      <h6 class="card-subtitle mb-2 text-success"><%=debt[:created_at]%></h6>
+    </span>
+    <h6 class="card-subtitle mb-2 text-muted"><%=debtor_name debt[:debtor_id]%></h6>
+    <p class="card-text"><%=debt[:description]%></p>
+    <a class="btn btn-outline-warning">Edit this debt</a>
+    <a class="btn btn-outline-danger">Delete this debt</a>
+  </div>
+</div>  
+</div>
