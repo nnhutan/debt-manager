@@ -1,21 +1,30 @@
+# frozen_string_literal: true
+
 # Debts Controller
 class DebtsController < ApplicationController
   include DebtsHelper
 
   before_action :check_params, only: [:create]
-  def index; end
+  def index
+    @debts = Debt.all
+  end
+
+  def show
+    @debt = Debt.find(params[:id])
+  end
 
   def new
     @debt = Debt.new
   end
 
   def create
+    description = "#{debt_params[:description]} (#{debtors_in_description(debt_params[:debtor_id])})"
     debt_params[:debtor_id].each do |debtor_id|
-      @debt = create_debt debtor_id
+      @debt = create_debt debtor_id, description
       @debt.save
     end
     flash[:success] = 'Debt created!'
-    redirect_to root_path
+    redirect_to debts_path
   end
 
   private

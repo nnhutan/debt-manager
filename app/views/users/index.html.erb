@@ -1,4 +1,28 @@
 <%= render 'shared/notice_messages' %>
-<h1 class="text-center">
-  Hello world!
-</h1>
+<h3 class="">What do you have?</h3>
+<div class="ms-2">
+  <h5 class="card-title"><%= total_amount_debt%> VND</h5>
+  <span class="card-text"><%= total_debtor%> debtors</span>
+  <span class="card-text"><%= total_debt%> debts</span>
+</div>
+
+<div class="title d-flex align-items-center justify-content-between mb-2 mt-3">
+<h3 class="">Your debtor</h3>
+<%= link_to "Manage your debtor", debtors_path, class: "btn btn-outline-primary"%>
+</div>
+<div class="">
+  <div class="row gy-3">
+    <% @debtors.each do |debt| %>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= debt[:full_name] %></h3>
+            <h6 class="card-subtitle mb-2 text-muted"><%= debt[:email]%> - <%= debt[:phone_number]%></h6>
+            <p class="card-text"><span class="fw-bold text-danger"><%= total_amount_debt_of_debtor debt[:id]%> VND</span> of <span class="fw-bold text-danger"><%= total_debt_of_debtor debt[:id]%></span> debts</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

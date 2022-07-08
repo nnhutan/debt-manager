@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_action :check_login, only: [:index]
   def index
     @debtors = current_user.debtors
-    puts @debtors.inspect
   end
 
   def new

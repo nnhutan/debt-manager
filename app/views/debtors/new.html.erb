@@ -1,5 +1,8 @@
+<div class="d-flex align-items-center justify-content-between mb-2">
   <h2>Add debtor</h2>
-  <%= form_with(model: @debtor) do |f| %>
+  <%= link_to 'Back', debtors_path, class: 'btn btn-outline-primary' %>
+</div>
+<%= form_with(model: @debtor) do |f| %>
 
  <%= render 'shared/error_messages', object: f.object %>
 
@@ -17,8 +20,6 @@
   <%= f.label :phone_number %>
   <%= f.phone_field :phone_number, class: 'form-control' %>
  </div>
-
-
 
  <div class="mb-3">
    <%= f.submit 'Add debtor', class: 'btn btn-danger' %>
