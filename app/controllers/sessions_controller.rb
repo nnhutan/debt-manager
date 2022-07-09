@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session_params[:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       flash[:success] = 'Login successful!'
-      redirect_to root_path
+      redirect_to users_path # , status: :see_other
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new', status: :unprocessable_entity
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to login_url, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -23,4 +23,8 @@ class UtilController < ApplicationController
     flash[:success] = 'Reset debts successfull!'
     redirect_to root_path, status: :see_other
   end
+
+  def welcome
+    redirect_to users_path, status: :see_other if logged_in?
+  end
 end

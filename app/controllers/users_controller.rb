@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'Sign up successful!'
-      redirect_to root_path
+      redirect_to login_path
     else
       puts @user.errors.inspect
       render 'new', status: :unprocessable_entity
