@@ -7,8 +7,8 @@
     </span>
     <h6 class="card-subtitle mb-2 text-muted"><%=debtor_name debt[:debtor_id]%></h6>
     <p class="card-text"><%=debt[:description]%></p>
-    <a class="btn btn-outline-warning">Edit this debt</a>
-    <a class="btn btn-outline-danger">Delete this debt</a>
+    <%= link_to "Edit", edit_debt_path(debt), class: "btn btn-outline-warning"%>
+    <%= link_to "Delete", debt, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-outline-danger"%>
   </div>
 </div>  
 </div>

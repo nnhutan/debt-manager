@@ -9,8 +9,8 @@
         <%= debtor[:phone_number] %>
       </h6>
       <p class="card-text"><span class="fw-bold text-danger"><%= total_amount_debt_of_debtor debtor[:id]%> VND</span> of <span class="fw-bold text-danger"><%= total_debt_of_debtor debtor[:id]%></span> debts</p>
-      <%= link_to "Detail", debtor, class: "btn btn-primary"%>
-      <%= link_to "Delete", debtor, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-danger"%>
+      <%= link_to "Detail", debtor, class: "btn btn-outline-primary"%>
+      <%= link_to "Delete", debtor, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-outline-danger"%>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ class DebtsController < ApplicationController
 
   before_action :check_params, only: [:create]
   def index
-    @debts = Debt.all
+    @debts = Debt.all.reverse
   end
 
   def show
@@ -18,13 +18,36 @@ class DebtsController < ApplicationController
   end
 
   def create
-    description = "#{debt_params[:description]} (#{debtors_in_description(debt_params[:debtor_id])})"
+    description = "#{debt_params[:description]} (#{debt_params[:with_you] ? 'You and' : ''}\
+    #{debtors_in_description(debt_params[:debtor_id])})"
     debt_params[:debtor_id].each do |debtor_id|
       @debt = create_debt debtor_id, description
       @debt.save
     end
     flash[:success] = 'Debt created!'
     redirect_to debts_path
+  end
+
+  def edit
+    @debt = Debt.find(params[:id])
+  end
+
+  def update
+    @debt = Debt.find(params[:id])
+    if @debt.update(debt_params)
+      flash[:success] = 'Debt updated!'
+    else
+      flash[:danger] = 'Debt not updated!'
+    end
+    redirect_to debts_path
+  end
+
+  def destroy
+    puts debt_params
+    @debt = Debt.find(params[:id])
+    @debt.destroy
+    flash[:success] = 'Debt deleted!'
+    redirect_to debts_path, status: :see_other
   end
 
   private
@@ -41,6 +64,6 @@ class DebtsController < ApplicationController
   end
 
   def debt_params
-    params.require(:debt).permit(:total, :description, debtor_id: [])
+    params.require(:debt).permit(:total, :description, :with_you, debtor_id: [])
   end
 end
