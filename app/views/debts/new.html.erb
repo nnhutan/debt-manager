@@ -1,36 +1,40 @@
+<div class="d-flex align-items-center justify-content-between mb-2">
   <h2>Add debt</h2>
-  <%= form_with(model: @debt) do |f| %>
+   <%= link_to "Back", debts_path, class: "btn btn-outline-primary"%>
+</div>
 
-<%= render 'shared/notice_messages' %>
+<%= form_with(model: @debt) do |f| %>
+  <%= render 'shared/notice_messages' %>
 
- <div class="mb-3">
-  <%= f.label :total %>
-  <%= f.number_field :total, class: 'form-control' %>
- </div>
+  <div class="mb-3">
+    <%= f.label :total %>
+    <%= f.number_field :total, class: 'form-control' %>
+  </div>
 
- <div class="mb-3">
-  <%= f.label :description %>
-  <%= f.text_area :description, class: 'form-control' %>
- </div>
+  <div class="mb-3">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
 
-    <div class="mb-3 d-flex align-items-center ">
+  <div class="mb-3 d-flex align-items-center">
+    <%= f.check_box :with_you, class: 'me-1'%>
+    <%= f.label :with_you, class: 'checkbox' %>
+  </div>
 
+  <div class="mb-3 d-flex align-items-center ">
     <%= f.label 'Debtors' %>
     <div>
-      
       <%= f.collection_check_boxes :debtor_id, Debtor.all, :id, :full_name,include_hidden: false do |b|%>
-      <div class="form-check">
-<%= b.check_box%>
-    <%= b.label%>
-</div>
-    <%end%>
+        <div class="form-check">
+          <%= b.check_box%>
+          <%= b.label%>
+        </div>
+      <%end%>
     </div>
-    </div>
+  </div>
 
-
-
- <div class="mb-3">
+  <div class="mb-3">
    <%= f.submit 'Add debt', class: 'btn btn-danger' %>
- </div>
+  </div>
 
 <% end %>
