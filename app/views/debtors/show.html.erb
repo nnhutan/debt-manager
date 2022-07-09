@@ -1,2 +1,46 @@
-this is
-<%= @debtor[:full_name] %> - <%= @debtor[:email] %> - <%= @debtor[:phone_number] %>
+<div class="d-flex justify-content-between">
+  <div class="">
+    <div class="d-flex align-items-center mb-1">
+      <h4 class="m-0 me-2"><%= @debtor[:full_name] %></h3>
+      <span class="fw-bold fs-6 badge text-bg-danger">
+        <%= total_amount_debt_of_debtor @debtor[:id] %> VND
+      </span>
+      <span class="fw-bold fs-6 badge text-bg-info ms-2">
+        <%= total_debt_of_debtor @debtor[:id] %> debts
+      </span>
+    </div>
+    <div class="d-flex align-items-center">
+      <h5 class="text-muted mb-0 me-2">
+        <%= @debtor[:email] %> - <%= @debtor[:phone_number] %>
+      </h4>
+    <%= link_to 'Edit infomation', edit_debtor_path(@debtor), class: 'btn btn-outline-warning btn-sm' %>
+    </div>
+  </div>
+
+  <div class="">
+    <%= link_to 'Back', debtors_path, class: 'btn btn-outline-primary' %>
+  </div>
+</div>
+
+
+<div class="mt-4">
+  <h3 class="">All debts of <span class="text-muted"><%=@debtor[:full_name]%></span></h3>
+  <div class="row">
+   <!-- loop to render item in lst_debts -->
+    <% @lst_debts.each do |debt| %>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title text-danger"><%= debt[:total] %> VND</h5>
+                <p class="card-text text-success">
+                  <%= debt[:created_at] %>
+                </p>
+            </div>
+                <p class="card-text"><%= debt[:description] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

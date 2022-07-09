@@ -1,9 +1,25 @@
 <%= render 'shared/notice_messages' %>
 <h3 class="">What do you have?</h3>
-<div class="ms-2">
-  <h5 class="card-title"><%= total_amount_debt%> VND</h5>
-  <span class="card-text"><%= total_debtor%> debtors</span>
-  <span class="card-text"><%= total_debt%> debts</span>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-danger"><%= total_amount_debt%> VND</h5>
+        <h5 class="card-text text-muted"><span class="text-success"><%= total_debtor%></span> debtors - <span class="text-success"><%= total_debt%></span> debts</h5>
+        <h5 class="card-text text-muted"></h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 d-flex flex-column justify-content-center">
+    <%= link_to "Add new debt", new_debt_path, class: "btn btn-outline-primary mb-2" %>
+    <%= link_to "Add new debtor", new_debtor_path, class: "btn btn-outline-primary" %>
+  </div>
+
+  <div class="col-md-4 d-flex flex-column justify-content-center">
+    <%= link_to "Aggregate", aggregate_path,data: {"turbo_method": :patch, turbo_confirm: "Are you sure? All data will be destroyed"}, class: "btn btn-outline-warning mb-2" %>
+    <%= link_to "Reset", reset_path,data: {"turbo_method": :patch, turbo_confirm: "Are you sure? All data will be destroyed"}, class: "btn btn-outline-danger" %>
+  </div>
 </div>
 
 <div class="title d-flex align-items-center justify-content-between mb-2 mt-3">

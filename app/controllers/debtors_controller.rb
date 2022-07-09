@@ -2,11 +2,12 @@
 
 class DebtorsController < ApplicationController
   def index
-    @debtors = Debtor.all
+    @debtors = Debtor.all.where(user_id: current_user.id)
   end
 
   def show
     @debtor = Debtor.find(params[:id])
+    @lst_debts = @debtor.debts.where(user_id: current_user.id)
   end
 
   def new
@@ -20,6 +21,20 @@ class DebtorsController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @debtor = Debtor.find(params[:id])
+  end
+
+  def update
+    @debtor = Debtor.find(params[:id])
+    if @debtor.update(debtor_params)
+      flash[:success] = 'Update debtor successful!'
+    else
+      flash[:danger] = 'Update debtor failed!'
+    end
+    redirect_to debtors_path
   end
 
   def destroy

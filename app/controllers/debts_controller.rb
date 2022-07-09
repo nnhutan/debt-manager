@@ -6,7 +6,7 @@ class DebtsController < ApplicationController
 
   before_action :check_params, only: [:create]
   def index
-    @debts = Debt.all.reverse
+    @debts = Debt.all.where(user_id: current_user[:id]).order(created_at: :desc)
   end
 
   def show
