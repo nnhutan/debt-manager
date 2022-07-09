@@ -1,6 +1,9 @@
-  <div class="row d-flex align-items-center justify-content-center" style="height: 100vh;" >
+  <div class="row d-flex align-items-center justify-content-center" style="height: 90vh;" >
   <div class="col-md-6 col-md-offset-3">
+<div class="d-flex align-items-center justify-content-between">
   <h2>Sign up</h2>
+  <%= link_to "Back", root_path, class: 'btn btn-secondary' %>
+</div>
   <%= form_with(model: @user) do |f| %>
   
  <%= render 'shared/error_messages', object: f.object %>
@@ -30,5 +33,6 @@
  </div>
 
 <% end %>
+<span class="">You already have an account? Let's <%= link_to "Sign in", login_path, class: "btn-link text-info" %></span>
   </div>
   </div>
