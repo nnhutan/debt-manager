@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center justify-content-between mb-2">
   <h2>Add debt</h2>
-   <%= link_to "Back", debts_path, class: "btn btn-outline-primary"%>
+   <%= link_to "Manage debts", debts_path, class: "btn btn-outline-primary"%>
 </div>
 
 <%= form_with(model: @debt) do |f| %>
@@ -24,7 +24,7 @@
   <div class="mb-3 d-flex align-items-center ">
     <%= f.label 'Debtors' %>
     <div>
-      <%= f.collection_check_boxes :debtor_id, Debtor.all, :id, :full_name,include_hidden: false do |b|%>
+      <%= f.collection_check_boxes :debtor_id, Debtor.all.where(user_id: current_user[:id]), :id, :full_name,include_hidden: false do |b|%>
         <div class="form-check">
           <%= b.check_box%>
           <%= b.label%>

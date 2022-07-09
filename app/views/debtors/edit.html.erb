@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center justify-content-between mb-2">
-  <h2>Add debtor</h2>
-  <%= link_to 'Manage debtors', debtors_path, class: 'btn btn-outline-primary' %>
+  <h2>Edit debtor</h2>
+  <%= link_to 'Back', @debtor, class: 'btn btn-outline-primary' %>
 </div>
 <%= form_with(model: @debtor) do |f| %>
 
@@ -22,7 +22,7 @@
  </div>
 
  <div class="mb-3">
-   <%= f.submit 'Add debtor', class: 'btn btn-danger' %>
+   <%= f.submit 'Update', class: 'btn btn-danger' %>
  </div>
 
 <% end %>

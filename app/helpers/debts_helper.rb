@@ -8,7 +8,7 @@ module DebtsHelper
 
   def create_debt(debtor_id, description)
     num_people = debt_params[:debtor_id].size
-    num_people += 1 if debt_params[:with_you]
+    num_people += 1 if debt_params[:with_you] == '1'
     total = (debt_params[:total].to_i / num_people).round
 
     current_user.debts.build({ debtor_id:, total:, description:, with_you: debt_params[:with_you] })
