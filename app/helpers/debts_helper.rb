@@ -6,11 +6,22 @@ module DebtsHelper
     Debtor.select(:full_name).where(id: debtor_ids).reduce('') { |x, y| "#{x}, #{y[:full_name]}" }
   end
 
-  def create_debt(debtor_id, description)
+  def save_transaction(total, description)
+    Transaction.create({ amount: total, description:, user_id: current_user.id })
+  end
+
+  def format_description
+    "#{debt_params[:description]} (#{debt_params[:with_you] ? 'You and' : ''}\
+    #{debtors_in_description(debt_params[:debtor_id])})"
+  end
+
+  def amount_per_person
     num_people = debt_params[:debtor_id].size
     num_people += 1 if debt_params[:with_you] == '1'
-    total = (debt_params[:total].to_i / num_people).round
+    (debt_params[:total].to_i / num_people).round
+  end
 
+  def create_debt(debtor_id, description, total)
     current_user.debts.build({ debtor_id:, total:, description:, with_you: debt_params[:with_you] })
   end
 end

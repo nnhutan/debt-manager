@@ -1,0 +1,23 @@
+.d-flex.align-items-center.justify-content-between.mb-2
+  %h2 Add debt
+  = link_to "Manage debts", debts_path, class: "btn btn-outline-primary"
+= form_with(model: @debt) do |f|
+  = render 'shared/notice_messages'
+  .mb-3
+    = f.label :total
+    = f.number_field :total, class: 'form-control'
+  .mb-3
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+  .mb-3.d-flex.align-items-center
+    = f.check_box :with_you, class: 'me-1'
+    = f.label :with_you, class: 'checkbox'
+  .mb-3.d-flex.align-items-center
+    = f.label 'Debtors'
+    %div
+      = f.collection_check_boxes :debtor_id, Debtor.all.where(user_id: current_user[:id]), :id, :full_name,include_hidden: false do |b|
+        .form-check
+          = b.check_box
+          = b.label
+  .mb-3
+    = f.submit 'Add debt', class: 'btn btn-danger'

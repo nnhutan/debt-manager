@@ -1,0 +1,23 @@
+.row.d-flex.align-items-center.justify-content-center.g-0{:style => "height: 100vh;"}
+  .col-md-6.col-md-offset-3{:style => "margin-top: -120px"}
+    .d-flex.align-items-center.justify-content-between
+      %h1{:style => "color: #dc3545"} Sign up
+      = link_to "Back", root_path, class: 'btn btn-secondary px-4 btn-sm'
+    = form_with(model: @user) do |f|
+      = render 'shared/error_messages', object: f.object
+      .mb-3
+        = f.label :full_name
+        = f.text_field :full_name, class: 'form-control'
+      .mb-3
+        = f.label :email
+        = f.text_field :email, class: 'form-control'
+      .mb-3
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+      .mb-3
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: 'form-control'
+      .mb-3
+        = f.submit 'Sign up', class: 'btn btn-danger px-5'
+    %span{:style => ""}
+      You already have an account? Let's #{link_to "Sign in", login_path, class: "btn-link fw-bold text-success"}

@@ -1,0 +1,17 @@
+.col-md-4
+  .card
+    .card-body
+      %h5.card-title
+        = debtor[:full_name]
+      %h6.card-subtitle.mb-2.text-muted
+        = debtor[:email]
+        \-
+        \#{debtor[:phone_number]}
+      %p.card-text
+        %span.fw-bold.text-danger
+          = total_amount_debt_of_debtor debtor[:id]
+        of
+        %span.fw-bold.text-danger= total_debt_of_debtor debtor[:id]
+        debts
+      = link_to "Detail", debtor, class: "btn btn-outline-primary"
+      = link_to "Delete", debtor, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-outline-danger"

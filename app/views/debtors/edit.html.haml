@@ -1,0 +1,16 @@
+.d-flex.align-items-center.justify-content-between.mb-2
+  %h2 Edit debtor
+  = link_to 'Back', @debtor, class: 'btn btn-outline-primary'
+= form_with(model: @debtor) do |f|
+  = render 'shared/error_messages', object: f.object
+  .mb-3
+    = f.label :full_name
+    = f.text_field :full_name, class: 'form-control'
+  .mb-3
+    = f.label :email
+    = f.email_field :email, class: 'form-control'
+  .mb-3
+    = f.label :phone_number
+    = f.phone_field :phone_number, class: 'form-control'
+  .mb-3
+    = f.submit 'Update', class: 'btn btn-danger'

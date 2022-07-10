@@ -1,0 +1,56 @@
+= render 'shared/notice_messages'
+%h3 What do you have?
+.row
+  .col-md-4
+    .card
+      .card-body
+        %h4.card-title.text-success
+          = total_amount_debt
+          %span.text-secondary.fs-5.fw-light for debts
+        %h5.card-text.text-muted
+          %span.text-success= total_debtor
+          debtors -
+          %span.text-success= total_debt
+          debts
+        %h4.card-title.text-danger
+          = total_amount_transaction
+          %span.text-secondary.fs-5.fw-light for your expenses
+  .col-md-4.d-flex.flex-column.justify-content-center
+    = link_to "Add new debt", new_debt_path, class: "btn btn-outline-primary mb-2 btn-lg"
+    = link_to "Add new debtor", new_debtor_path, class: "btn btn-outline-success btn-lg"
+  .col-md-4.d-flex.flex-column.justify-content-center
+    = link_to "Aggregate", aggregate_path,data: {"turbo_method": :patch, turbo_confirm: "Are you sure? All data will be destroyed"}, class: "btn btn-lg btn-outline-warning mb-2"
+    = link_to "Reset", reset_path,data: {"turbo_method": :patch, turbo_confirm: "Are you sure? All data will be destroyed"}, class: "btn btn-outline-danger btn-lg"
+.title.d-flex.align-items-center.justify-content-between.mb-2.mt-3
+  %h3 Your debtors
+  = link_to "Manage your debtor", debtors_path, class: "btn btn-outline-primary"
+%div
+  .row.gy-3
+    - @debtors.each do |debt|
+      .col-md-4
+        .card
+          .card-body
+            %h5.card-title
+              = debt[:full_name]
+              %h6.card-subtitle.mb-2.text-muted
+                = debt[:email]
+                \- #{debt[:phone_number]}
+            %p.card-text
+              %span.fw-bold.text-danger
+                = total_amount_debt_of_debtor debt[:id]
+              of
+              %span.fw-bold.text-danger= total_debt_of_debtor debt[:id]
+              debts
+.title.d-flex.align-items-center.justify-content-between.mb-2.mt-3
+  %h3 Your expenses
+  = link_to "Clear", transactions_path,data: {"turbo_method": :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger"
+%div
+  .row.gy-3
+    - @transactions.each do |transaction|
+      .col-md-4
+        .card
+          .card-body
+            %h5.card-title.text-danger
+              = format_money(transaction[:amount])
+            %p.card-text
+              = transaction[:description]

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# DebtorsController
 class DebtorsController < ApplicationController
+  before_action :check_login
   def index
     @debtors = Debtor.all.where(user_id: current_user.id)
   end
@@ -24,11 +26,11 @@ class DebtorsController < ApplicationController
   end
 
   def edit
-    @debtor = Debtor.find(params[:id])
+    @debtor = Debtor.find_by(id: params[:id], user_id: current_user.id)
   end
 
   def update
-    @debtor = Debtor.find(params[:id])
+    @debtor = Debtor.find_by(id: params[:id], user_id: current_user.id)
     if @debtor.update(debtor_params)
       flash[:success] = 'Update debtor successful!'
     else
@@ -38,7 +40,7 @@ class DebtorsController < ApplicationController
   end
 
   def destroy
-    @debtor = Debtor.find(params[:id])
+    @debtor = Debtor.find_by(id: params[:id], user_id: current_user.id)
     @debtor.destroy
     flash.now[:success] = 'Delete debtor successful!'
     redirect_to debtors_path, status: :see_other

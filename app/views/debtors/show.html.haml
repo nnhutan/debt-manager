@@ -1,0 +1,34 @@
+.d-flex.justify-content-between
+  %div
+    .d-flex.align-items-center.mb-1
+      %h4.m-0.me-2
+        = @debtor[:full_name]
+        %span.fw-bold.fs-6.badge.text-bg-danger
+          = total_amount_debt_of_debtor @debtor[:id]
+        %span.fw-bold.fs-6.badge.text-bg-info.ms-2
+          = total_debt_of_debtor @debtor[:id]
+          debts
+    .d-flex.align-items-center
+      %h5.text-muted.mb-0.me-2
+        = @debtor[:email]
+        \- #{@debtor[:phone_number]}
+        
+        \#{link_to 'Edit infomation', edit_debtor_path(@debtor), class: 'btn btn-outline-warning btn-sm'}
+  %div
+    = link_to 'Back', debtors_path, class: 'btn btn-outline-primary'
+.mt-4
+  %h3
+    All debts of
+    %span.text-muted= @debtor[:full_name]
+  .row
+    / loop to render item in lst_debts
+    - @lst_debts.each do |debt|
+      .col-md-4
+        .card
+          .card-body
+            .d-flex.justify-content-between
+              %h5.card-title.text-danger
+                = format_money(debt[:total])
+              %p.card-text.text-success
+                = debt[:created_at]
+            %p.card-text= debt[:description]
