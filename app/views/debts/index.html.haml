@@ -1,0 +1,7 @@
+= render 'shared/notice_messages'
+.d-flex.align-items-center.justify-content-between.mb-2
+  %h3 All debts
+  = link_to "Add new debt", new_debt_path, class: "btn btn-outline-primary"
+.debts-container
+  .row.gy-3
+    = render @debts

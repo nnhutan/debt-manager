@@ -1,0 +1,6 @@
+= render 'shared/notice_messages'
+.d-flex.align-items-center.justify-content-between.mb-2
+  %h3 Your Debtors
+  = link_to 'Add Debtor', new_debtor_path, class: "btn btn-outline-primary"
+.row.gy-3
+  = render @debtors

@@ -1,0 +1,13 @@
+.d-flex.align-items-center.justify-content-between.mb-2
+  %h2 Edit debt
+  = link_to "Back", debts_path, class: "btn btn-outline-primary"
+= form_with(model: @debt) do |f|
+  = render 'shared/notice_messages'
+  .mb-3
+    = f.label :total
+    = f.number_field :total, class: 'form-control'
+  .mb-3
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+  .mb-3
+    = f.submit 'Update', class: 'btn btn-danger'

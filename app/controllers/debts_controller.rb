@@ -2,15 +2,15 @@
 
 # Debts Controller
 class DebtsController < ApplicationController
-  include DebtsHelper
-
+  before_action :check_login
   before_action :check_params, only: [:create]
+  include DebtsHelper
   def index
     @debts = Debt.all.where(user_id: current_user[:id]).order(created_at: :desc)
   end
 
   def show
-    @debt = Debt.find(params[:id])
+    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
   end
 
   def new
@@ -18,22 +18,23 @@ class DebtsController < ApplicationController
   end
 
   def create
-    description = "#{debt_params[:description]} (#{debt_params[:with_you] ? 'You and' : ''}\
-    #{debtors_in_description(debt_params[:debtor_id])})"
+    description = format_description
+    total = amount_per_person
     debt_params[:debtor_id].each do |debtor_id|
-      @debt = create_debt debtor_id, description
+      @debt = create_debt debtor_id, description, total
       @debt.save
     end
+    save_transaction(total, description) if debt_params[:with_you] == '1'
     flash[:success] = 'Debt created!'
     redirect_to debts_path
   end
 
   def edit
-    @debt = Debt.find(params[:id])
+    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
   end
 
   def update
-    @debt = Debt.find(params[:id])
+    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
     if @debt.update(debt_params)
       flash[:success] = 'Debt updated!'
     else
@@ -43,8 +44,7 @@ class DebtsController < ApplicationController
   end
 
   def destroy
-    puts debt_params
-    @debt = Debt.find(params[:id])
+    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
     @debt.destroy
     flash[:success] = 'Debt deleted!'
     redirect_to debts_path, status: :see_other

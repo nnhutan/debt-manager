@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :check_login, only: [:index]
   def index
     @debtors = current_user.debtors
+    @transactions = current_user.transactions
   end
 
   def new

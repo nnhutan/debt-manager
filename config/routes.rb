@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :debts
   patch 'aggregate', to: 'util#aggregate'
   patch 'reset', to: 'util#reset'
+
+  delete 'transactions', to: 'transactions#destroy'
 end

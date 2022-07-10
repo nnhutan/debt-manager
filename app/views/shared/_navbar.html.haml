@@ -1,0 +1,22 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
+  .container
+    %img{:alt => "logo", :src => "/logo.png", :width => "36"}/
+    = link_to "Debt Manager", users_path, class: 'navbar-brand'
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        %li.nav-item
+          = link_to "Home", users_path, class: "nav-link #{active_class(users_path)}"
+        %li.nav-item
+          = link_to "Debtors", debtors_path, class: "nav-link #{active_class(debtors_path)}"
+        %li.nav-item
+          = link_to "Debts", debts_path, class: "nav-link #{active_class(debts_path)}"
+      %ul.navbar-nav.ms-auto.mb-2.mb-lg-0.d-flex.align-items-center
+        %li.nav-item
+          %span.text-light Hello,
+          %span.fst-italic.ms-1.me-2.text-light
+            = current_user[:full_name]
+            \!
+        %li.nav-item
+          = button_to "Logout", logout_path, method: :delete ,class: "btn btn-outline-warning"

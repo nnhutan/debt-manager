@@ -1,0 +1,11 @@
+.col-md-4
+  .card
+    .card-body
+      %span.d-flex.align-items-center.justify-content-between
+        %h5.card-title.text-danger
+          = format_money(debt[:total])
+        %h6.card-subtitle.mb-2.text-success= debt[:created_at]
+      %h6.card-subtitle.mb-2.text-muted= debtor_name debt[:debtor_id]
+      %p.card-text= debt[:description]
+      = link_to "Edit", edit_debt_path(debt), class: "btn btn-outline-warning"
+      = link_to "Delete", debt, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-outline-danger"

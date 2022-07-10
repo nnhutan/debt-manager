@@ -1,0 +1,10 @@
+.row.align-items-center.g-0{:style => "height: 100vh; width: 100wh; "}
+  .col-md-8.ps-4.mb-3.offset-md-6{:style => "margin-top: -50px"}
+    %h1.fw-bolder.font-monospace.mb-1{:style => "color: #363662; font-size: 48px"}
+      Debt Manager
+      %h5.text-muted.fw-light.ps-2.fst-italic.mb-5{:style => "width: 70%"}
+        We will assist you with debt management. Very suitable for groups of friends living together
+    %p.mt-5.mb-2.text-muted.fs-5 Let's get stated!
+    = link_to "Sign up", signup_path, class: 'btn btn-danger btn-lg px-5 me-2'
+    %span or
+    = link_to "Sign in", login_path, class: 'btn btn-success btn-lg px-5 ms-2'
