@@ -25,4 +25,6 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: deb_manager_production
+  database: debtmanager
+  username: deploy
+  password: nhutan
