@@ -8,22 +8,22 @@
         %span.fw-bold.fs-6.badge.text-bg-info.ms-2
           = total_debt_of_debtor @debtor[:id]
           debts
-    .d-flex.align-items-center
-      %h5.text-muted.mb-0.me-2
+    .d-flex.align-items-md-center.flex-column.flex-md-row.align-items-start
+      %h5.text-muted.mb-0.me-2.fs-6.fs-md-5
         = @debtor[:email]
         \- #{@debtor[:phone_number]}
         
-        \#{link_to 'Edit infomation', edit_debtor_path(@debtor), class: 'btn btn-outline-warning btn-sm'}
+      \#{link_to 'Edit infomation', edit_debtor_path(@debtor), class: 'btn btn-outline-warning btn-sm'}
   %div
     = link_to 'Back', debtors_path, class: 'btn btn-outline-primary'
 .mt-4
   %h3
     All debts of
     %span.text-muted= @debtor[:full_name]
-  .row
+  .row.gy-2
     / loop to render item in lst_debts
     - @lst_debts.each do |debt|
-      .col-md-4
+      .col-lg-4.col-md-6.col-12
         .card
           .card-body
             .d-flex.justify-content-between
