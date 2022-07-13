@@ -25,6 +25,11 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: debtmanager
-  username: deploy
-  password: nhutan
+  # database: debtmanager
+  # username: deploy
+  # password: nhutan
+  database: database-1
+  username: postgres
+  password: Nhutan.1710
+  host: database-1.co7to8nsfks5.us-east-2.rds.amazonaws.com
+  port: 5432
