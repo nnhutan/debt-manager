@@ -28,8 +28,8 @@ production:
   # database: debtmanager
   # username: deploy
   # password: nhutan
-  database: database-1
-  username: postgres
-  password: Nhutan.1710
-  host: database-1.co7to8nsfks5.us-east-2.rds.amazonaws.com
-  port: 5432
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PWD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
