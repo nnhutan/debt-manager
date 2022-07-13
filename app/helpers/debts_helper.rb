@@ -3,7 +3,7 @@
 # Debts Helper
 module DebtsHelper
   def debtors_in_description(debtor_ids)
-    Debtor.select(:full_name).where(id: debtor_ids).reduce('') { |x, y| "#{x}, #{y[:full_name]}" }
+    Debtor.select(:full_name).where(id: debtor_ids).map(&:full_name).join(', ')
   end
 
   def save_transaction(total, description)
@@ -11,8 +11,8 @@ module DebtsHelper
   end
 
   def format_description
-    "#{debt_params[:description]} (#{debt_params[:with_you] ? 'You and' : ''}\
-    #{debtors_in_description(debt_params[:debtor_id])})"
+    "#{debt_params[:description]} (#{debt_params[:with_you] == '1' ? 'You and ' : ''}"\
+    "#{debtors_in_description(debt_params[:debtor_id])})"
   end
 
   def amount_per_person
