@@ -10,7 +10,7 @@ class DebtsController < ApplicationController
   end
 
   def show
-    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
+    @debt = Debt.find_by(id: params[:id], user_id: current_user[:id])
   end
 
   def new
@@ -30,11 +30,11 @@ class DebtsController < ApplicationController
   end
 
   def edit
-    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
+    @debt = Debt.find_by(id: params[:id], user_id: current_user[:id])
   end
 
   def update
-    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
+    @debt = Debt.find_by(id: params[:id], user_id: current_user[:id])
     if @debt.update(debt_params)
       flash[:success] = 'Debt updated!'
     else
@@ -44,7 +44,7 @@ class DebtsController < ApplicationController
   end
 
   def destroy
-    @debt = Debt.find_by(params[:id], user_id: current_user[:id])
+    @debt = Debt.find_by(id: params[:id], user_id: current_user[:id])
     @debt.destroy
     flash[:success] = 'Debt deleted!'
     redirect_to debts_path, status: :see_other
