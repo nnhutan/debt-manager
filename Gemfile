@@ -46,6 +46,7 @@ gem 'bootsnap', require: false
 gem 'haml-rails', '~> 2.0'
 # Use Sass to process CSS
 # gem "sassc-rails"
+gem 'figaro'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 
@@ -68,6 +69,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem 'capistrano', '~> 3.11'
+  gem 'capistrano-figaro-yml', '~> 1.0', '>= 1.0.5'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4' # gem "spring"

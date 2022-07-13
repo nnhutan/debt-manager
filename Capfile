@@ -6,6 +6,7 @@ require "capistrano/deploy"
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rbenv'
+require 'capistrano/figaro_yml'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '3.1.2'
