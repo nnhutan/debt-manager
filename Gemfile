@@ -49,9 +49,11 @@ gem 'haml-rails', '~> 2.0'
 gem 'figaro'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+gem 'to_xls', '~> 1.5', '>= 1.5.3'
+gem 'to_xls-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
