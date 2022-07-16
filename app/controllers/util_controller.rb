@@ -30,10 +30,10 @@ class UtilController < ApplicationController
   end
 
   def export_all
-    user_data = User.select('debtors.full_name as Debtor', 'total as amount', 'description', 'created_at').joins(:debtors,
-                                                                                                                 :debts).where(
-                                                                                                                   id: current_user[:id]
-                                                                                                                 )
+    user_data = User.select('debtors.full_name as Debtor', 'total as amount', 'description',
+                            'created_at').joins(debts: [:debtor]).where(
+                              id: current_user[:id]
+                            )
     respond_to do |format|
       format.html
       format.xls do
