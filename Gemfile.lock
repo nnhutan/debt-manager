@@ -235,6 +235,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.18.0)
       parser (>= 3.1.1.0)
+    ruby-ole (1.2.12.2)
     ruby-progressbar (1.11.0)
     ruby_parser (3.19.1)
       sexp_processor (~> 4.16)
@@ -247,6 +248,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.16.1)
+    spreadsheet (1.3.0)
+      ruby-ole
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -265,6 +268,10 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
+    to_xls (1.5.3)
+      spreadsheet
+    to_xls-rails (1.3.1)
+      spreadsheet (>= 0.8.5)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -315,6 +322,8 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  to_xls (~> 1.5, >= 1.5.3)
+  to_xls-rails
   turbo-rails
   tzinfo-data
   web-console

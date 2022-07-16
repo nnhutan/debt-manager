@@ -15,3 +15,4 @@
         debts
       = link_to "Detail", debtor, class: "btn btn-outline-primary"
       = link_to "Delete", debtor, data: {"turbo-method": :delete, turbo_confirm: "Really?" }, class: "btn btn-outline-danger"
+      = link_to "Export", export_debtor_path(id: debtor[:id], format: :xls), class: "btn btn-outline-success"
